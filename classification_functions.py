@@ -25,7 +25,7 @@ import seaborn as sns
 import ast
 import datetime
 import json
-from Hendrix_utils import *
+from parcellation_to_classification_utils import *
 
 # --- Prediction per ROI --- 
 
