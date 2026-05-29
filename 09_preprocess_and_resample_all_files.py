@@ -222,45 +222,6 @@ def preprocess_all_files(subject_files_df):
 
     return subject_files_df
 
-# def preprocess_all_files(subject_files_df):
-#     output_dir = "preprocessed_and_resampled_data/"
-#     try:
-#         os.mkdir(output_dir)
-#     except:
-#         pass
-    
-#     for index, row in subject_files_df.iterrows():
-#         logging.info("Preprocessing subject:", row["subject"], "session:", row["session"])
-#         print("Preprocessing subject:", row["subject"], "session:", row["session"])
-#         #TODO try visit one, AND then also visit 2, as a separate attempt. This should work fine if
-#         #TODO you encapsulate all of this in in a function, don't duplicate the code - 
-#         try:
-#             preprocessed_and_resampled_path_01 = preprocess_and_resample_run(output_dir, "sub-" + row["subject"], "ses-visit" + row["session"], "sp_run_01", "cleaned_file.nii.gz")
-#             try:
-#                 os.makedirs(os.path.dirname(preprocessed_and_resampled_path_01))
-#             except:
-#                 pass
-            
-#             if os.path.exists(preprocessed_and_resampled_path_01):
-#                 print(preprocessed_and_resampled_path_01, "already exists!!!")
-#                 subject_files_df.at[index,'resampled_and_preprocessed_bold'] = preprocessed_and_resampled_path_01
-#             else:
-#                 cleaned_bold, mask_file = preprocess_file(subject_id = row["subject"], task = "sp_run_01", session = row["session"])
-#                 resampled = resample_to_img(cleaned_bold, template)
-#                 logging.info("resampled shape:", resampled.shape, "saved at:", preprocessed_and_resampled_path_01)
-#                 print("resampled shape:", resampled.shape, "saved at:", preprocessed_and_resampled_path_01)
-#                 resampled.to_filename(preprocessed_and_resampled_path_01)
-                
-#                 #TODO Maybe add the name of the run to this column? 'resample_and_preprocessed_bold_run_01'
-#                 subject_files_df.at[index,'resampled_and_preprocessed_bold_run_01'] = preprocessed_and_resampled_path_01
-
-#         except:
-#             logging.warning("DIDN'T HAPPEN FOR subject:", row["subject"], "session:", row["session"])
-#             print("DIDN'T HAPPEN FOR subject:", row["subject"], "session:", row["session"])
-
-#     return subject_files_df
-
-
 subject_files_df_updated = preprocess_all_files(subject_files_df)
 
 
