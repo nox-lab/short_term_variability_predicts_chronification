@@ -1,5 +1,5 @@
 # Moment-to-Moment Pain Variability Predicts Pain Chronification
-This study aims to investigate whether short-term variability in reported pain ratings plays a role in pain chronification. To do this, we takes data from Baliki et al. (2012) comprising a set of participants with subacute back pain (SBP) and two control groups, namely a healthy and a chronic group. The participants were followed longitudinally over the course of one year, divided in 4 visits. At each visit, they reported spontaneous pain ratings while in an fMRI scanner, providing reported pain ratings as well as thier neural correlates. After one year, SBP participants are classified as either recovering or persistent based on whether their average reported pain dropped by 20% or not, respectively.
+This study aims to investigate whether short-term variability in reported pain ratings can be leveraged to predict pain chronification. To do this, we take data from Baliki et al. (2012) comprising a set of participants with subacute back pain (SBP) and two control groups, namely a healthy and a chronic group. The participants were followed longitudinally over the course of one year, divided in 4 visits. At each visit, they reported spontaneous pain ratings while in an fMRI scanner, providing continuous pain ratings as well as neural activity. After one year, SBP participants are classified as either recovering or persistent based on whether their average reported pain dropped by 20%.
 
 ### Order to run analysis:
 1. First, run preprocessing files. Details about the files, are shown in (Preprocessing: Notebooks Summary).
@@ -8,14 +8,17 @@ This study aims to investigate whether short-term variability in reported pain r
 4. Run pain ratings variability anlaysis (Ratings analysis: Notebooks Summary)
 
 ## Preprocessing: Notebooks Summary
-Notebooks starting in `prep_` perform preliminary investigations of the dataset followed by preprocessing then cleaning fMRI data. These files can be run in numerical order.
+Notebooks starting in with a number perform initial steps of dataset handling. They include preliminary investigations of the dataset followed by preprocessing then cleaning fMRI data. These files can be run in numerical order. 
 
-1. `01_basic_analysis.ipynb` -> basic dataset checks, seeing what's present and whether it's BIDs compliant
-2. `02_missing_data.ipynb` -> Analysing how many visits, files are present for each participant.
-4. `04_func_data_and_resp_length.ipynb` -> Fixes issues regarding reponse length of the functional data found in `01_basic_analysis.ipynb`.
-5. `05_fmriprep_corrections.ipynb` -> Makes changed to the source task-related files (JSON files) to  make the dataset BIDS complaint.
-6. `06_analysing_chronic_patients.ipynb` -> Narrow down the participants that can be analysed.
-7. `07_preproc_check.ipynb` -> Check to ensure success of the preprocessing of the files.
+NOTE: This is a computationally intensive step.
+
+1. `01_basic_analysis` Basic dataset checks, seeing what's present and whether it is BIDs compliant.
+2. `02_missing_data` Analysing how many visits, files are present for each participant.
+4. `04_func_data_and_resp_length` Fixes issues regarding reponse length of the functional data found in `01_basic_analysis`.
+5. `05_fmriprep_corrections.ipynb` Makes changed to the source task-related files (JSON files) to  make the dataset BIDS complaint.
+6. `06_analysing_chronic_patients` Narrow down the participants that can be analysed.
+7. `07_preproc_check.ipynb` Check to ensure success of the preprocessing of the files.
+8. `09_preprocess_and_resample_all_files` preprocesses and resamples all files.
 
 ## Downsampling, regression and GLMs: Notebooks Summary
 Notebooks starting in `regression_` detail the response smoothing, downsampling, regression and GLMs. detail the response smoothing, downsampling, regression and GLMs. These files can be run in numerical order.
