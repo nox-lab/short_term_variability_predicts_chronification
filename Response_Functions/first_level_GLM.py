@@ -9,7 +9,7 @@ from nilearn.plotting import plot_stat_map
 import pandas as pd
 from nilearn.plotting import plot_glass_brain
 import matplotlib.pyplot as plt
-from Carl_Response_Functions.load_responses import readCsv
+from Response_Functions.load_responses import readCsv
 
 
 

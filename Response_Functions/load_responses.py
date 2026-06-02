@@ -25,7 +25,7 @@ def get_all_visits_for_one_subject(participant):
     """
     returns a list of ints representing the visits that the participant was at, using the sessions.tsv file
     """
-    session_file = f"/rds/project/rds-3IOyKgCQu4I/sbp/openpain.org/subacute_longitudinal_study/{participant}/{participant}_sessions.tsv"
+    session_file = f"openpain.org/subacute_longitudinal_study/{participant}/{participant}_sessions.tsv"
     f = pd.read_csv(session_file, sep='\t')
     return [i[-1] for i in list(f['session_id'].loc[f['session_id'].str.match('visit*')])]
 

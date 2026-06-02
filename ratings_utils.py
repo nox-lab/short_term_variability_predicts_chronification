@@ -132,7 +132,8 @@ def remove_outliers_iqr(df, group_col, visit_col, value_col):
     return pd.concat(filtered)
 
 
-def linear_vis_cv(actual_ratings, customised_colours, outliers = False):
+def linear_vis_cv(actual_ratings, customised_colours, outliers = False,
+                  savefig=False):
     '''
     Function that visualises the linear relationship between visit and CV
 
@@ -142,7 +143,7 @@ def linear_vis_cv(actual_ratings, customised_colours, outliers = False):
 
     Returns:
     plot of coefficient of variation (CV) per patient and visit against visit.
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     plt.figure(figsize=(5, 4))
     
@@ -191,11 +192,77 @@ def linear_vis_cv(actual_ratings, customised_colours, outliers = False):
     ax.set_xticklabels(xtick_labels)
     ax.tick_params(axis='both', labelsize=14)
 
-    plt.savefig("Results/Figures_ratings_analysis/cv_across_visits.png")
+    if savefig:
+        plt.savefig("Results/cv_across_visits.png")
+
     plt.show()
 
 
-def boxplot_cv(actual_ratings, customised_colours, outliers=False):
+def linear_vis_mean(ratings, customised_colours, outliers = False,
+                    savefig = False):
+    '''
+    Function that visualises the linear relationship between visit and CV
+
+    Params:
+    actual_ratings: dataframe containing nondemeaned ratings per subject and
+    visit.
+
+    Returns:
+    plot of coefficient of variation (CV) per patient and visit against visit.
+    Saves figure "Results/"
+    '''
+    plt.figure(figsize=(5, 4))
+    
+    visit_order = ["visit1", "visit2", "visit3", "visit4"]  
+    group_labels = ["Chronic", "SBPp", "SBPr"]
+
+    df = ratings.copy()  
+    
+    df = df.dropna()
+    
+    # Ensure 'visit' column is categorical with the correct order of visits
+    df["visit"] = pd.Categorical(df["visit"], categories=visit_order, ordered=True)
+
+    # Sort data based on visit order
+    df = df.sort_values("visit")
+
+    sns.lineplot(x="visit", y="average_pain", hue="group", data=df, marker="o", palette=customised_colours)
+    
+    ax = plt.gca() 
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+    # plt.title("Mean CV Across Subjects Per Group Over 4 Visits")
+    plt.ylabel("Mean Pain Ratings (0-100)", fontsize = 14)
+    plt.xlabel("Months", fontsize = 14) 
+    ax.set_xticklabels(["1", "2", "3", "4"])
+    handles, labels = ax.get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax.legend(by_label.values(), ["Chronic", "SBPp", "SBPr"], loc="lower left")
+    plt.grid(False)
+
+    # Map visit names to months
+    visit_to_month = {
+        "visit1": "onset",
+        "visit2": "2",
+        "visit3": "7",
+        "visit4": "13"
+    }
+
+    xticks = ax.get_xticks()
+    xtick_labels = [visit_to_month.get(v, v) for v in df["visit"].cat.categories]
+    ax.set_xticks(xticks)
+    ax.set_xticklabels(xtick_labels)
+
+    ax.tick_params(axis='both', labelsize=14)
+
+    if savefig:
+        plt.savefig("Results/mean_across_visits_linear.png", dpi=300, bbox_inches='tight')
+    plt.show()
+
+
+def boxplot_cv(actual_ratings, customised_colours, outliers=False,
+               savefig= False):
         '''
         Function that visualises coefficient of variance (CV) in a boxplot
 
@@ -205,7 +272,7 @@ def boxplot_cv(actual_ratings, customised_colours, outliers=False):
 
         Returns:
         boxplot of the coefficient of variance (CV) per group and visit. 
-        Saves figure in "Results/Figures_ratings_analysis/".
+        Saves figure in "Results/".
         '''
         plt.figure(figsize=(10, 5))
 
@@ -259,15 +326,16 @@ def boxplot_cv(actual_ratings, customised_colours, outliers=False):
         ax.legend(by_label.values(), ["Chronic", "SBPp", "SBPr"], loc="upper center", bbox_to_anchor=(0.5, 0.85))
         ax.tick_params(axis='both', labelsize=14)
 
-        if outliers == True:
-            plt.savefig("Results/Figures_ratings_analysis/boxplot_CV.png")
-        else:
-            plt.savefig("Results/Figures_ratings_analysis/boxplot_CV_no_outliers.png")
+        if outliers == True and savefig == True:
+            plt.savefig("Results/boxplot_CV.png")
+        elif outliers != True and savefig ==True:
+            plt.savefig("Results/boxplot_CV_no_outliers.png")
 
         plt.show()
 
 
-def avg_rating_per_group(actual_ratings, customised_palette, outliers=False):
+def avg_rating_per_group(actual_ratings, customised_palette, outliers=False,
+                         savefig=False):
     '''
     Function that computes and visualises the distribution of average reported pain rating
     per subject, in each group across the 4 visits.
@@ -278,7 +346,7 @@ def avg_rating_per_group(actual_ratings, customised_palette, outliers=False):
 
     Returns:
     boxplot of the average rating per group and visit. 
-    Saves figure in "Results/Figures_ratings_analysis/".
+    Saves figure in "Results/".
     
     '''
     # Create figure with 3 subplots (one for each group)
@@ -345,7 +413,9 @@ def avg_rating_per_group(actual_ratings, customised_palette, outliers=False):
         axes[i].tick_params(axis='y', labelsize=12)
 
     fig.supxlabel("Months", fontsize=14, y=-0.0001)
-    plt.savefig("Results/Figures_ratings_analysis/boxplot_avg_painrating.png")
+
+    if savefig:
+        plt.savefig("Results/boxplot_avg_painrating.png")
 
 
 def melting_timeseries_in_column(actual_ratings, melted):
@@ -384,7 +454,7 @@ def plot_timeseries_per_sub(actual_ratings):
 
     Returns:
     12 subplots, each plot contains timeseries data per group and visit.
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     
     visit_order = ["visit1", "visit2", "visit3", "visit4"]
@@ -421,11 +491,11 @@ def plot_timeseries_per_sub(actual_ratings):
                 
     plt.suptitle("Timeseries Pain Ratings per Visit and Group", fontsize=16, fontweight='bold')
     plt.tight_layout(rect=[0, 0, 1, 0.96])  # Adjust layout to fit suptitle
-    plt.savefig("Results/Figures_ratings_analysis/timeseries_ratings_per_subject.png")
+    plt.savefig("Results/timeseries_ratings_per_subject.png")
     plt.show()
 
 
-def boxplot_IQR(actual_ratings, outliers = False):
+def boxplot_IQR(actual_ratings, outliers = False, savefig =False):
     '''
     Function that visualises a boxplots of the IQR
     by default it excludes outliers 
@@ -436,7 +506,7 @@ def boxplot_IQR(actual_ratings, outliers = False):
 
     Returns:
     boxplot of Interquartile Range (IQR).
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     # Plotting box plot of the IQR per group across visits
     visit_order = ["visit1", "visit2", "visit3", "visit4"]  
@@ -454,7 +524,8 @@ def boxplot_IQR(actual_ratings, outliers = False):
     plt.legend(title="Patient Group", loc="upper right")
     
     
-    plt.savefig("Results/Figures_ratings_analysis/boxplot_IQR.png")
+    if savefig:
+        plt.savefig("Results/boxplot_IQR.png")
     plt.show()
 
 
@@ -470,7 +541,7 @@ def std_vs_mean(actual_ratings):
     Returns:
     standard deviation of the ratings per subject and visit against the mean of the 
     ratings per subject and visit
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/
     '''
 
     visit_order = ["visit1", "visit2", "visit3", "visit4"]
@@ -511,11 +582,7 @@ def std_vs_mean(actual_ratings):
     
     plt.suptitle("Standard Deviation Against Mean per Patient (Best Fit Line)", fontsize=16, fontweight="bold")
     plt.tight_layout(rect=[0, 0, 1, 0.96])  # Adjust layout to fit suptitle
-    
-    
-    # Save and display plot - only uncomment if you want to save fig
-    
-    #plt.savefig("Results/Figures_ratings_analysis/std_vs_mean_with_fit.png", dpi=300, bbox_inches="tight")
+
     plt.show()
 
 
@@ -531,7 +598,7 @@ def var_vs_mean(actual_ratings):
     Returns:
     variance of the ratings per subject and visit against the mean of the 
     ratings per subject and visit.
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     
     visit_order = ["visit1", "visit2", "visit3", "visit4"]
@@ -572,15 +639,10 @@ def var_vs_mean(actual_ratings):
     
     plt.suptitle("Variance Against Mean per Patient (Best Fit Line)", fontsize=16, fontweight="bold")
     plt.tight_layout(rect=[0, 0, 1, 0.96])  # Adjust layout to fit suptitle
-    
-    
-    # Save and display plot - only uncomment if you want to save fig
-
-    #plt.savefig("Results/figures_ratings_analysis/variance_vs_mean_with_fit.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
-def cv_vs_mean(actual_ratings, customised_palette):
+def cv_vs_mean(actual_ratings, customised_palette, savefig=False):
     '''
     Function that visualises the relationship between the CV per subject
     and the mean
@@ -591,7 +653,7 @@ def cv_vs_mean(actual_ratings, customised_palette):
 
     Returns:
     Plot of CV value per subject (given a group and visit) against their mean pain rating.
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     actual_ratings["ratings_variance"] = actual_ratings["ratings_std"] ** 2
     
@@ -632,7 +694,8 @@ def cv_vs_mean(actual_ratings, customised_palette):
     plt.suptitle("CV against Mean Pain Ratings per Subject", fontsize=16, fontweight="bold")
     #plt.tight_layout(rect=[0, 0, 1, 0.96])
     plt.tight_layout()  # Adjust layout to fit suptitle
-    plt.savefig("Results/Figures_ratings_analysis/cv_vs_mean_with_fit.png", dpi=300, bbox_inches="tight")
+    if savefig:
+        plt.savefig("Results/cv_vs_mean_with_fit.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -648,7 +711,7 @@ def vis_ratings_with_IQR(actual_ratings, actual_ratings_melted):
 
     Returns:
     violin plot of data per visit with overimposed IQR per visit.
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     
     visit_order = ["visit1", "visit2", "visit3", "visit4"]
@@ -701,11 +764,8 @@ def vis_ratings_with_IQR(actual_ratings, actual_ratings_melted):
     plt.suptitle("Pain Rating Distributions with IQR Overlay", fontsize=16, fontweight="bold")
     plt.tight_layout(rect=[0, 0, 1, 0.96])
 
-    #Save plot - only uncomment if you want to save the figure
-    #plt.savefig("Results/Figures_ratings_analysis/distributions_with_iqr.png", dpi=300)
 
-
-def boxplot_variance(actual_ratings, outliers=False):
+def boxplot_variance(actual_ratings, outliers=False, savefig=False):
     ''' 
     Function that visualises a boxplots of the variance 
     by default it excludes outliers 
@@ -716,7 +776,7 @@ def boxplot_variance(actual_ratings, outliers=False):
 
     Returns:
     boxplot of variance.
-    Saves figure "Results/figures_ratings_analysis/"
+    Saves figure "Results/"
     '''
     # Plotting box plot of the IQR per group across visits
     visit_order = ["visit1", "visit2", "visit3", "visit4"]  
@@ -733,12 +793,12 @@ def boxplot_variance(actual_ratings, outliers=False):
     plt.ylabel("Variance")
     plt.legend(title="Patient Group", loc="upper right")
     
-    
-    plt.savefig("Results/Figures_ratings_analysis/boxplot_variance_no outliers.png")
+    if savefig:
+        plt.savefig("Results/boxplot_variance_no outliers.png")
     plt.show()
 
 
-def boxplot_std(actual_ratings, outliers=False):
+def boxplot_std(actual_ratings, outliers=False, savefig =False):
     ''' 
     Function that visualises a boxplots of the standard deviation 
     by default it excludes outliers 
@@ -749,7 +809,7 @@ def boxplot_std(actual_ratings, outliers=False):
 
     Returns:
     boxplot of standard deviation across groups and visits + boxplot saved in path:
-    "Results/Figures_ratings_analysis/"
+    "Results/"
     '''
     visit_order = ["visit1", "visit2", "visit3", "visit4"]  
     
@@ -765,8 +825,8 @@ def boxplot_std(actual_ratings, outliers=False):
     plt.ylabel("Std")
     plt.legend(title="Patient Group", loc="upper right")
     
-    
-    plt.savefig("Results/Figures_ratings_analysis/boxplot_std.png")
+    if savefig:
+        plt.savefig("Results/boxplot_std.png")
     plt.show()
 
 

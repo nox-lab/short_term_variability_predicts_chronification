@@ -1,11 +1,19 @@
 # Moment-to-Moment Pain Variability Predicts Pain Chronification
 This study aims to investigate whether short-term variability in reported pain ratings can be leveraged to predict pain chronification. To do this, we take data from Baliki et al. (2012) comprising a set of participants with subacute back pain (SBP) and two control groups, namely a healthy and a chronic group. The participants were followed longitudinally over the course of one year, divided in 4 visits. At each visit, they reported spontaneous pain ratings while in an fMRI scanner, providing continuous pain ratings as well as neural activity. After one year, SBP participants are classified as either recovering or persistent based on whether their average reported pain dropped by 20%.
 
+## Pre preprocessing step using fmriprep
+If this is a new download of the dataset (!IMPORTANT: ONLY RUN IF THIS IS A NEW DOWNLOAD OF THE DATASET), then run `05_fmriprep_corrections.ipynb`, add the `.bidsignore` file to the dataset, and convert all SamplingFrequency in dataset directory from string to float. This will generate the output file needed to run preprocessing using notebooks (details as follows).
+
+Example code to run pre-preprocessing using fmriprep:
+singularity run --cleanenv fmriprep-22.0.0.simg openpain.org/subacute_longitudinal_study/ output/ participant --participant-label 101 --nthreads 16 --verbose --fs-license-file license.txt
+
 ### Order to run analysis:
-1. First, run preprocessing files. Details about the files, are shown in (Preprocessing: Notebooks Summary).
+1. First, run preprocessing files. Details about the files, are shown in (Preprocessing: Notebooks Summary). *Note: Due to the size od the data 
 2. Run downsampling and hierarchical GLM to obtain z-scores summarising neural correlates associated to pain variability (details are in Downsampling, regression and GLMs: Notebooks Summary).
-3. Run classification: predict whether participants will recover or progress to persistent pain(details in Classification: Notebooks Summary).
-4. Run pain ratings variability anlaysis (Ratings analysis: Notebooks Summary)
+3. Run classification: predict whether participants will recover or progress to persistent pain(details in Classification: Notebooks Summary). 
+*Note: To allow testing of the working of the code we have left some pre-obtained results in this project, which are needed to run classification. These include the atlases (Tian and Schaefer, which can be found in the directory `melbourne atlas`); the output of the second level GLM `secondlevelGLMdf.csv`; the first level z maps resampled `Carl_first_level_z_maps_resampled_mask_2`. Due to the large size of the latter, we have only provided data belonging to one participant. Complete data can obtained by running step 1 and step 2 on the original data. We provide this subset of data as necessary to run the code.*
+4. Run pain ratings variability anlaysis (Ratings analysis: Notebooks Summary). 
+*Note: the `Preprocessed_Responses` and `Results/Intermediate_Files` directories provide pre-obtained results needed to run this analysis. We include it as necessary to run the code. If results want to be reproduced, step 1-2 need to be run.* 
 
 ## Preprocessing: Notebooks Summary
 Notebooks starting in with a number perform initial steps of dataset handling. They include preliminary investigations of the dataset followed by preprocessing then cleaning fMRI data. These files can be run in numerical order. 

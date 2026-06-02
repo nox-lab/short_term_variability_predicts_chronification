@@ -5,8 +5,8 @@ from scipy.signal import welch, sosfiltfilt, butter, savgol_filter
 from scipy.stats import norm as normal_dist
 from scipy.stats import kurtosis
 import matplotlib.pyplot as plt
-from Carl_Response_Functions.load_responses import *
-from Carl_Response_Functions.plotting import generate_hrf
+from Response_Functions.load_responses import *
+from Response_Functions.plotting import generate_hrf
 import os
 import pandas as pd
 from typing import Callable

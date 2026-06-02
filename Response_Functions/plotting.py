@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
-from Carl_Response_Functions.load_responses import readCsv, norm
+from Response_Functions.load_responses import readCsv, norm
 from nilearn.glm.first_level import glover_hrf
 from scipy.signal import welch
 from nilearn import datasets, image, plotting

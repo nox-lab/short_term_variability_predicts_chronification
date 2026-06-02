@@ -58,9 +58,6 @@ def obtain_base_paths(setup_style):
         rate_of_change_csv_path = os.path.join(base_path, 'data', 'Carl_preprocessed_responses', 'painrating_rate_of_change.csv')
         selected_labels_csv_path = os.path.join(base_path, 'data', 'selected_subjects_labels.csv')
 
-    #TODO For Carl: we should figure out one place where we all keep secondlevelGLMdf -- we had decided to move it to intermediate files?
-    # I have a version there
-
     elif setup_style == "carl":
         base_path = "/scratch/ca541/sbp"
         tian_atlas_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T.nii.gz')

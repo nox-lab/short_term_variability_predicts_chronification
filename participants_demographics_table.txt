@@ -1,0 +1,115 @@
+\begin{longtable}{lllrrll}
+\caption{Table containing demographic information of participants that were selected for this study, from the original dataset of participants in Baliki et al.. race is an ethnicity code which interpretation can be found in the original work by Baliki et al.; education is the number of years of education, duration is the duration of the symptoms in months; group is the group to which the participant belongs after classification (see Methods); visits reports which visits the participant attended and were deemed valid after data cleaning.}
+\label{supp:participants_demographics}\\
+\toprule
+{} &     race & gender &   age &  education &                 group &                            visits \\
+subject &          &        &       &            &                       &                                   \\
+\midrule
+\endfirsthead
+\caption[]{Table containing demographic information of participants that were selected for this study, from the original dataset of participants in Baliki et al.. race is an ethnicity code which interpretation can be found in the original work by Baliki et al.; education is the number of years of education, duration is the duration of the symptoms in months; group is the group to which the participant belongs after classification (see Methods); visits reports which visits the participant attended and were deemed valid after data cleaning.} \\
+\toprule
+{} &     race & gender &   age &  education &                 group &                            visits \\
+subject &          &        &       &            &                       &                                   \\
+\midrule
+\endhead
+\midrule
+\multicolumn{7}{r}{{Continued on next page}} \\
+\midrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+sub-001 &        6 &      M &  27.0 &       16.0 &                  SBPr &          [visit1, visit2, visit4] \\
+sub-002 &        6 &      M &  57.0 &       15.0 &                  SBPr &                  [visit1, visit3] \\
+sub-003 &        4 &      F &  49.0 &       12.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-004 &        6 &      F &  46.0 &       16.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-005 &        3 &      F &  30.0 &       20.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-006 &        1 &      F &  28.0 &       17.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-007 &        6 &      F &  43.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-008 &        6 &      M &  44.0 &       12.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-009 &        6 &      M &  44.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-010 &        4 &      F &  44.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-011 &        1 &      M &  27.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-013 &        6 &      M &  34.0 &       16.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-014 &        6 &      F &  57.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-015 &        1 &      F &  28.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-016 &        3 &      M &  29.0 &       19.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-017 &        6 &      F &  62.0 &       18.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-018 &        6 &      M &  42.0 &       20.0 &                  SBPr &          [visit1, visit2, visit3] \\
+sub-019 &        4 &      M &  52.0 &       10.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-020 &        4 &      M &  39.0 &       14.0 &                  SBPr &          [visit1, visit2, visit3] \\
+sub-021 &        6 &      M &  46.0 &       14.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-022 &        4 &      M &  46.0 &       12.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-023 &        1 &      M &  53.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-024 &        1 &      M &  53.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-025 &        4 &      F &  31.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-026 &        6 &      M &  27.0 &       16.0 &                  SBPr &                  [visit1, visit2] \\
+sub-027 &        1 &      M &  24.0 &       12.0 &                  SBPr &          [visit1, visit2, visit3] \\
+sub-028 &        4 &      F &  41.0 &       14.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-030 &        6 &      F &  49.0 &       13.0 &                  SBPr &                  [visit1, visit3] \\
+sub-031 &        4 &      M &  45.0 &       14.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-032 &        4 &      M &  25.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-033 &        1 &      F &  33.0 &       16.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-034 &        6 &      F &  31.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-035 &        4 &      F &  49.0 &       18.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-036 &        4 &      F &  38.0 &       13.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-037 &        6 &      F &  47.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-038 &        6 &      M &  57.0 &       17.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-039 &        6 &      M &  44.0 &       14.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-040 &        6 &      F &  27.0 &       18.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-041 &        1 &      F &  40.0 &       14.5 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-042 &        6 &      F &  56.0 &       14.0 &                  SBPp &          [visit1, visit3, visit4] \\
+sub-043 &  1 and 3 &      F &  42.0 &       13.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-044 &        4 &      F &  44.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-045 &        4 &      F &  39.0 &       13.0 &                  SBPr &          [visit1, visit2, visit3] \\
+sub-046 &        4 &      M &  32.0 &       11.0 &                  SBPr &          [visit1, visit2, visit3] \\
+sub-047 &        6 &      M &  22.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-048 &        4 &      M &  45.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-049 &        6 &      F &  29.0 &       15.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-050 &        4 &      M &  41.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-051 &        6 &      F &  44.0 &       16.0 &                  SBPr &          [visit1, visit2, visit3] \\
+sub-052 &        6 &      M &  44.0 &       18.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-053 &        4 &      M &  43.0 &       16.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-054 &        4 &      F &  50.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-055 &        6 &      M &  52.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-056 &        4 &      M &  56.0 &       14.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-057 &        4 &      F &  48.0 &       11.0 &                  SBPp &          [visit1, visit3, visit4] \\
+sub-058 &        4 &      F &  51.0 &       12.0 &                  SBPp &                  [visit1, visit3] \\
+sub-059 &        4 &      F &  57.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-060 &        6 &      M &  66.0 &       13.0 &                  SBPr &          [visit1, visit3, visit4] \\
+sub-061 &        4 &      M &  56.0 &       15.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-062 &        4 &      M &  49.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-063 &        4 &      F &  49.0 &       14.0 &                  SBPp &          [visit1, visit2, visit3] \\
+sub-064 &        4 &      M &  56.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-065 &        4 &      M &  31.0 &       16.0 &                  SBPr &  [visit1, visit2, visit3, visit4] \\
+sub-066 &        4 &      M &  44.0 &       12.0 &                  SBPp &          [visit1, visit2, visit3] \\
+sub-067 &        4 &      F &  47.0 &       12.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-068 &        6 &      M &  63.0 &       16.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-069 &        6 &      F &  49.0 &       13.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-070 &        4 &      F &  33.0 &       18.0 &                  SBPp &  [visit1, visit2, visit3, visit4] \\
+sub-097 &        1 &      M &  44.0 &       12.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-098 &        6 &      M &  35.0 &       16.0 &  [nan, nan, nan, nan] &  [visit1, visit2, visit3, visit4] \\
+sub-099 &        6 &      M &  32.0 &        6.0 &               chronic &                            visit1 \\
+sub-100 &  1 and 6 &      M &  41.0 &       13.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-101 &        4 &      M &  47.0 &       16.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-102 &        4 &      F &  37.0 &       18.0 &               chronic &          [visit1, visit3, visit4] \\
+sub-103 &        6 &      F &  55.0 &       16.0 &               chronic &          [visit1, visit3, visit4] \\
+sub-104 &        6 &      M &  44.0 &       14.0 &               chronic &                            visit1 \\
+sub-105 &        6 &      M &  43.0 &       16.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-106 &        6 &      M &  46.0 &       12.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-107 &        4 &      M &  49.0 &       13.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-108 &        4 &      M &  47.0 &       14.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-109 &        4 &      M &  57.0 &       14.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-110 &        4 &      M &  51.0 &       12.0 &               chronic &                  [visit1, visit2] \\
+sub-111 &        6 &      M &  38.0 &       12.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-112 &        1 &      F &  50.0 &       12.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-113 &        6 &      F &  40.0 &       14.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-114 &        4 &      F &  48.0 &       14.0 &               chronic &          [visit1, visit2, visit3] \\
+sub-115 &        4 &      M &  52.0 &       16.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-116 &        6 &      F &  52.0 &       15.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-117 &        4 &      M &  50.0 &       10.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-118 &        4 &      M &  48.0 &       15.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-119 &        4 &      F &  40.0 &       15.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-120 &        6 &      F &  47.0 &       16.0 &               chronic &  [visit1, visit2, visit3, visit4] \\
+sub-121 &        1 &      F &  21.0 &       12.0 &               chronic &          [visit1, visit2, visit3] \\
+\end{longtable}
