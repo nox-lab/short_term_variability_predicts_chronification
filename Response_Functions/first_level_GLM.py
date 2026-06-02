@@ -130,7 +130,6 @@ def run_first_level_glm(z_maps_path,preproc_path,subject_files_df,path, regresso
   """
   Runs the first level GLM for the chronic patients. Saves the results to `z_maps_path`. If the subjects have already been done, then says this, to prevent 
   overwriting.
-  #TODO Add LOGIC which looks in the preproc_path for the latest run. The regressors will also need to be updated.
   """
 
   slice_times = np.arange(regressors['response'].shape[1])*2.5 #should be 240

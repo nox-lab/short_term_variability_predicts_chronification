@@ -44,7 +44,7 @@ def obtain_base_paths(setup_style):
         tian_label_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T_label.txt')
         z_map_path = os.path.join(base_path, 'data', 'Zscores')
         second_level_glm_path = os.path.join(base_path, 'data', 'secondLevelGLMDF.csv')
-        run_mapping = os.path.join(base_path, 'Results', 'Results', 'Non_discretized_responses', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
+        run_mapping = os.path.join(base_path, 'Results', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
         rate_of_change_csv_path = os.path.join(base_path, 'data', 'Carl_preprocessed_responses', 'painrating_rate_of_change.csv')
         selected_labels_csv_path = os.path.join(base_path, 'data', 'selected_subjects_labels.csv')
 
@@ -54,7 +54,7 @@ def obtain_base_paths(setup_style):
         tian_label_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T_label.txt')
         z_map_path = os.path.join(base_path, 'data', 'Zscores')
         second_level_glm_path = os.path.join(base_path, 'data', 'secondLevelGLMDF.csv')
-        run_mapping = os.path.join(base_path, 'Results', 'Results', 'Non_discretized_responses', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
+        run_mapping = os.path.join(base_path, 'Results', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
         rate_of_change_csv_path = os.path.join(base_path, 'data', 'Carl_preprocessed_responses', 'painrating_rate_of_change.csv')
         selected_labels_csv_path = os.path.join(base_path, 'data', 'selected_subjects_labels.csv')
 
@@ -63,7 +63,7 @@ def obtain_base_paths(setup_style):
         tian_atlas_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T.nii.gz')
         tian_label_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T_label.txt')
         z_map_path = os.path.join(base_path, 'Zscores')
-        run_mapping = os.path.join(base_path, 'Results', 'Results', 'Non_discretized_responses', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
+        run_mapping = os.path.join(base_path, 'Results', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
         second_level_glm_path = os.path.join(base_path, 'data', 'secondLevelGLMDF.csv')
 
     elif setup_style == "gaia":
@@ -71,7 +71,7 @@ def obtain_base_paths(setup_style):
         tian_atlas_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T.nii.gz')
         tian_label_path = os.path.join(base_path, 'melbourne atlas', 'Tian_Subcortex_S4_3T_label.txt')
         z_map_path = os.path.join(base_path, 'Results', 'Carl_first_level_z_maps_resampled_mask_2')
-        run_mapping = os.path.join(base_path, 'Results', 'Results', 'Non_discretized_responses', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
+        run_mapping = os.path.join(base_path, 'Results', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
         second_level_glm_path = os.path.join(base_path, 'Results', 'Intermediate_Files', 'secondlevelGLMdf.csv')
 
     else:
@@ -79,7 +79,7 @@ def obtain_base_paths(setup_style):
         tian_atlas_path = "Tian_Subcortex_S4_3T.nii.gz"
         tian_label_path = "Tian_Subcortex_S4_3T_label.txt"
         z_map_path = 'carl_z_maps/'
-        run_mapping = os.path.join(base_path, 'Results', 'Results', 'Non_discretized_responses', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
+        run_mapping = os.path.join(base_path, 'Results', 'Carl_preprocessed_responses', 'preprocessed_response_details.csv')
         second_level_glm_path = "secondLevelGLMDF.csv"
 
     return base_path, tian_atlas_path, tian_label_path, z_map_path, second_level_glm_path, run_mapping
@@ -121,9 +121,6 @@ def generate_output_classifier_dir(base_path, classifier_name, distribution, dat
     returns:
     generated path where the results are stored
     '''
-    #COMMENT: I make a folder with {distribution}_data and not directly store the output there because we might want 
-    #to test the performance of the classifier given different parameters e.g. n_splits, and in this way they will
-    #not be overwritten, and will be easily comparable.
 
 
     path_to_results = os.path.join(base_path, "Results", f"{data_type}_Classifiers_Output", f"{classifier_name}",
@@ -266,10 +263,6 @@ def ensure_string_keys(dictionary):
 
 
 def select_subject_id_and_group_label(z_map_path, second_level_glm_path, run_map, range_selected=0):
-    #COMMENT: made this function to get some order, as things were called randomly in the code before
-    #confused on why we had code that takes subject id as input and returns subject id
-    #so just returning group labels, but left the chunk to get ids in.
-
     '''  
     Function that given an range of subjects (arbitrary, selected by ID) retrieves thier id and 
     group label  
@@ -300,7 +293,6 @@ def select_subject_id_and_group_label(z_map_path, second_level_glm_path, run_map
     for subject_id in range(1, all_ids):
 
         #get zmaps per subject and append the ids of these subjects to a list if the data exists
-        #COMMENT for Carl: this will break for you, the paths are not correct I think
         data = load_and_aggregate_subjects(subject_id, visit_range=range(1,5), run_mapping_path = run_map, base_path = z_map_path)
 
         if data is not None:

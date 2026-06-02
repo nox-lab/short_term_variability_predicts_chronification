@@ -1,0 +1,6 @@
+*.pdf
+*.tsv.gz
+sessions.json
+task-mv_resp.json
+task-sp_resp.json
+task-sv_resp.json

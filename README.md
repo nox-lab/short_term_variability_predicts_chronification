@@ -2,18 +2,17 @@
 This study aims to investigate whether short-term variability in reported pain ratings can be leveraged to predict pain chronification. To do this, we take data from Baliki et al. (2012) comprising a set of participants with subacute back pain (SBP) and two control groups, namely a healthy and a chronic group. The participants were followed longitudinally over the course of one year, divided in 4 visits. At each visit, they reported spontaneous pain ratings while in an fMRI scanner, providing continuous pain ratings as well as neural activity. After one year, SBP participants are classified as either recovering or persistent based on whether their average reported pain dropped by 20%.
 
 ## Pre preprocessing step using fmriprep
-If this is a new download of the dataset (!IMPORTANT: ONLY RUN IF THIS IS A NEW DOWNLOAD OF THE DATASET), then run `05_fmriprep_corrections.ipynb`, add the `.bidsignore` file to the dataset, and convert all SamplingFrequency in dataset directory from string to float. This will generate the output file needed to run preprocessing using notebooks (details as follows).
+If this is a new download of the dataset (!IMPORTANT: ONLY RUN IF THIS IS A NEW DOWNLOAD OF THE DATASET), then run `05_fmriprep_corrections.ipynb`, add the `.bidsignore` file to the dataset, and convert all SamplingFrequency in dataset directory from string to float. This will generate the output file needed to run preprocessing using notebooks (If this does not work, see the bottom of this readme `"Checking if the dataset is bids compliant"`).
 
 Example code to run pre-preprocessing using fmriprep:
 singularity run --cleanenv fmriprep-22.0.0.simg openpain.org/subacute_longitudinal_study/ output/ participant --participant-label 101 --nthreads 16 --verbose --fs-license-file license.txt
 
 ### Order to run analysis:
-1. First, run preprocessing files. Details about the files, are shown in (Preprocessing: Notebooks Summary). *Note: Due to the size od the data 
+1. First, run preprocessing files. Details about the files, are shown in (Preprocessing: Notebooks Summary). *Note this step is very computationally intensive and should be run on a cluster.*
 2. Run downsampling and hierarchical GLM to obtain z-scores summarising neural correlates associated to pain variability (details are in Downsampling, regression and GLMs: Notebooks Summary).
 3. Run classification: predict whether participants will recover or progress to persistent pain(details in Classification: Notebooks Summary). 
-*Note: To allow testing of the working of the code we have left some pre-obtained results in this project, which are needed to run classification. These include the atlases (Tian and Schaefer, which can be found in the directory `melbourne atlas`); the output of the second level GLM `secondlevelGLMdf.csv`; the first level z maps resampled `Carl_first_level_z_maps_resampled_mask_2`. Due to the large size of the latter, we have only provided data belonging to one participant. Complete data can obtained by running step 1 and step 2 on the original data. We provide this subset of data as necessary to run the code.*
-4. Run pain ratings variability anlaysis (Ratings analysis: Notebooks Summary). 
-*Note: the `Preprocessed_Responses` and `Results/Intermediate_Files` directories provide pre-obtained results needed to run this analysis. We include it as necessary to run the code. If results want to be reproduced, step 1-2 need to be run.* 
+*Note: To allow testing the code structure we have included some pre-obtained results in this project, which are needed to run classification. These include the atlases (Tian and Schaefer, which can be found in the directory `melbourne atlas`); the design matrix for the second level GLM `secondlevelGLMdf.csv` which contains the classification labels and sessions attended, and the resampled first level z maps `Carl_first_level_z_maps_resampled_mask_2` for one participant.*
+4. Run pain ratings variability analysis (see below, Ratings analysis: Notebooks Summary). 
 
 ## Preprocessing: Notebooks Summary
 Notebooks starting in with a number perform initial steps of dataset handling. They include preliminary investigations of the dataset followed by preprocessing then cleaning fMRI data. These files can be run in numerical order. 
@@ -28,10 +27,12 @@ NOTE: This is a computationally intensive step.
 7. `07_preproc_check.ipynb` Check to ensure success of the preprocessing of the files.
 8. `09_preprocess_and_resample_all_files` preprocesses and resamples all files.
 
-## Downsampling, regression and GLMs: Notebooks Summary
-Notebooks starting in `Carl_` detail the response smoothing, downsampling, regression and GLMs. detail the response smoothing, downsampling, regression and GLMs. These files can be run in numerical order.
+## Downsampling, regression and GLMs: Notebooks and Files Summary
+Notebooks starting in `Carl_` detail the response smoothing, downsampling, regression and GLMs. detail the response smoothing, downsampling, regression and GLMs. These notebooks can be run in numerical order.
 
-6. `Carl_preprocessed_responses/`
+The "preprocessed_responses" files which get generated when running these notebooks will be in a `Carl_preprocessed_responses` folder, and will contain:
+
+- `Carl_preprocessed_responses/`
     - convolved_lag_1_differences.csv
     - convolved_movement_regressors.csv
     - convolved_responses.csv
@@ -40,21 +41,20 @@ Notebooks starting in `Carl_` detail the response smoothing, downsampling, regre
     - preprocessed_response_details.csv
     - responseArray.csv
     - unsmoothedResponseArray.csv
-7. `Carl_second_level_z_maps_13_05_2023/`
+
+The functions related to the GLMs and response preprocessing are located in:
+- `Carl_Response_Functions` -> This is the central location for the functions used by for hierarchical GLM related tasks.
+
+The output of the GLM will be in:
+- `Carl_second_level_z_maps_09_05_2025/`
     - chronic_baseline
     - error
     - movement
     - pain
-8. `Carl_second_level_z_maps_15_05_2023_beta_testing/`
-9. `output`
-10. `preprocessed_and_resampled_data`
-11. `SecondLevelContrastsSaved` (various)
-12. `Carl_first_level_resampled_mask_2`
-13. `Carl_NeuroSynth_Files`
-14. `Carl_Response_Functions` -> This is the central location for the functions used by for hierarchical GLM related tasks.
+
 
 ## Classification: Notebooks Summary
-Notebooks starting in `classification` detail the classification of prediction of classes labels in visit 4 based on the z-scores from visit 1. z-scores are output by the hierarchical GLM. These can be run in numerical order.
+Notebooks starting in `classification` detail the classification of prediction of classes labels in visit 4 based on the z-scores from visit 1. z-scores are output by the first level GLM. These can be run in numerical order.
 `classification_01_prediction_and_permutation_test` performs classification using both GLM and SVM algorithms starting from visit 1 to predict visit 4. Input to the algorithms is z-scores output by hierarchical GLMs, therefore preprocessing and GLMs are two steps that have to be performed before running this notebook. Classification with GLM takes about 1 hour on CPU, SVM about 30 mins. Output is a csv file saved to a location which will be specified in the relevant classification block once it is run.
 Permutation of the ROIs labels is used to ensure statistical validity. It is also present in this notebook, by default it is 1000 iterations. Then, checks to ensure that permutation was performed correctly, as well as the location of the csv file containing the permutation results are saved to a location output in the relevant block. Runtime for the SVM classifier is about 2 hours, while for GBM about 3.5 hours.
 
@@ -82,7 +82,6 @@ Notebooks startig in `ratings_` detail analysis, preprocessing, missing data exc
 ### Paper and Dataset
 
 1. (paper)
-
 "Corticostriatal functional connectivity predicts transition to chronic back pain", Baliki et al. (2012), Nature Neuroscience, https://www.nature.com/articles/nn.3153
 
 2. OpenPain where dataset associated to paper is publicly available:
@@ -104,7 +103,7 @@ Standard visual stimulus
 Available Modalities:
 fMRI
 
-### Checking if the dataset is bids complaint
+### Checking if the dataset is bids compliant
 1. These steps were performed to preprocess dataset. This step does not need to be performed more than once.
     + Run the file: `01_basic_analysis.ipynb`
     + If you've downloaded the dataset for the first time then the `participants.json` file in the dataset isn't validated. You will have to add an extra bracket at line 126. Use https://jsonlint.com to validate your json files. 

@@ -131,7 +131,6 @@ def check_nii_shapes(subject_files_df):
 check_nii_shapes(subject_files_df)
 
 def preprocess_file(subject_id = "097", task = "sp_run_01", session = "1"):
-    #TODO Docstring for this
     bold_file = subject_files_df.loc[(subject_files_df.subject == subject_id) & (subject_files_df.session == session)][task + "_bold"].tolist()[0]
     mask_file = subject_files_df.loc[(subject_files_df.subject == subject_id) & (subject_files_df.session == session)][task + "_brain_mask"].tolist()[0]
     
