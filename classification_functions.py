@@ -621,9 +621,6 @@ def save_classification_permutation_results_to_json(subjects_data, S_all, classi
             # Create pipeline with the specified classifier
             pipe = make_pipeline(scaler, classifier)
 
-            # Use cross_val_score for parallel cross-validation
-            #scores = cross_val_score(pipe, parcel_data, shuffled_S_all, cv=StratifiedKFold(n_splits=5, shuffle=True), scoring='roc_auc', n_jobs=16)
-
             # Ensure we are always using string labels
             if label not in parcel_accuracies:
                 print(f"Warning: Label {label} was not found in parcel_accuracies. Skipping.")
@@ -631,8 +628,7 @@ def save_classification_permutation_results_to_json(subjects_data, S_all, classi
 
             # Store the ROC AUC scores for each iteration
             #parcel_accuracies[label].append(scores)
-            
-            #COMMENT: Again here we were running k-fold cross validation twice, fixed it
+        
             all_true = []
             all_pred = []
             scores = []

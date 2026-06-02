@@ -265,7 +265,7 @@ def ensure_string_keys(dictionary):
     return {key.decode() if isinstance(key, bytes) else key: value for key, value in dictionary.items()}
 
 
-def select_subject_id_and_group_label(z_map_path, second_level_glm_path, run_map):
+def select_subject_id_and_group_label(z_map_path, second_level_glm_path, run_map, range_selected=0):
     #COMMENT: made this function to get some order, as things were called randomly in the code before
     #confused on why we had code that takes subject id as input and returns subject id
     #so just returning group labels, but left the chunk to get ids in.
@@ -291,8 +291,13 @@ def select_subject_id_and_group_label(z_map_path, second_level_glm_path, run_map
     #Get dataset with subjects' groups
     SecondLevelGLMDF = pd.read_csv(second_level_glm_path)
 
+    if range_selected!=0:
+        all_ids = range_selected
+    else:
+        all_ids = len(SecondLevelGLMDF)+1
+
     #Filter selected subjects by ID range (arbitrary)
-    for subject_id in range(1, len(SecondLevelGLMDF)+1):
+    for subject_id in range(1, all_ids):
 
         #get zmaps per subject and append the ids of these subjects to a list if the data exists
         #COMMENT for Carl: this will break for you, the paths are not correct I think
