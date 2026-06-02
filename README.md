@@ -29,7 +29,7 @@ NOTE: This is a computationally intensive step.
 8. `09_preprocess_and_resample_all_files` preprocesses and resamples all files.
 
 ## Downsampling, regression and GLMs: Notebooks Summary
-Notebooks starting in `regression_` detail the response smoothing, downsampling, regression and GLMs. detail the response smoothing, downsampling, regression and GLMs. These files can be run in numerical order.
+Notebooks starting in `Carl_` detail the response smoothing, downsampling, regression and GLMs. detail the response smoothing, downsampling, regression and GLMs. These files can be run in numerical order.
 
 6. `Carl_preprocessed_responses/`
     - convolved_lag_1_differences.csv
