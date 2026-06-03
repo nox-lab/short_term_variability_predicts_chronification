@@ -1,5 +1,10 @@
 # Moment-to-Moment Pain Variability Predicts Pain Chronification
-This study aims to investigate whether short-term variability in reported pain ratings can be leveraged to predict pain chronification. To do this, we take data from Baliki et al. (2012) comprising a set of participants with subacute back pain (SBP) and two control groups, namely a healthy and a chronic group. The participants were followed longitudinally over the course of one year, divided in 4 visits. At each visit, they reported spontaneous pain ratings while in an fMRI scanner, providing continuous pain ratings as well as neural activity. After one year, SBP participants are classified as either recovering or persistent based on whether their average reported pain dropped by 20%.
+This study aims to investigate whether short-term variability in reported pain ratings can be leveraged to predict pain chronification. To do this, we take data from Baliki et al. (2012) comprising a set of participants with subacute back pain (SBP) and two control groups, namely a healthy and a chronic group. The participants were followed longitudinally over the course of one year, divided in 4 visits. At each visit, they reported spontaneous pain ratings while in an fMRI scanner, providing continuous pain ratings as well as neural activity. After one year, SBP participants are classified as either recovering or persistent based on whether their average reported pain dropped by 20%. 
+
+# Full paper:
+Moment-to-Moment Pain Variability Predicts Pain Chronification
+Gaia Pantaleo, Carl Ashworth, Maeghal Jain, Flavia Mancini
+bioRxiv 2026.03.02.709010; doi: https://doi.org/10.64898/2026.03.02.709010
 
 ## Pre preprocessing step using fmriprep
 If this is a new download of the dataset (!IMPORTANT: ONLY RUN IF THIS IS A NEW DOWNLOAD OF THE DATASET), then run `05_fmriprep_corrections.ipynb`, add the `.bidsignore` file to the dataset, and convert all SamplingFrequency in dataset directory from string to float. This will generate the output file needed to run preprocessing using notebooks (If this does not work, see the bottom of this readme `"Checking if the dataset is bids compliant"`).
